@@ -21,7 +21,7 @@ export class InventlistComponent implements OnInit {
   public errorMsg;
   
 
-  displayedColumns: string[] = ['id','orderDate', 'merchatId', 'customerEmail', 'amount','paymentStatus', 'action'];
+  displayedColumns: string[] = ['id','orderDate', 'merchatId', 'customerEmail', 'amount','paymentStatus'];
 
   constructor(private _inventoryService : InventoryService,public dialog: MatDialog,public router: Router) {}
 
@@ -31,7 +31,6 @@ export class InventlistComponent implements OnInit {
 
   ngOnInit() {
     this._inventoryService.Productdata.subscribe((data)=>{
-      // console.log(data);
       this.student = data;
       this.dataSource.data = this.student;
       this.sortedData = this.student.slice();
@@ -87,7 +86,6 @@ NameSort(){
 
 OpenDialog(row){
   const dialogref = this.dialog.open(ModifyinvntComponent, {width :'500px', data: row});
-  // console.log(row);
 }
 
 sortData(sort: Sort) {
@@ -111,20 +109,36 @@ sortData(sort: Sort) {
   });
 }
 
-// applyFilter(event : Event){
-//   const data = this.student.slice();
-//   const filtervalue = (event.target as HTMLInputElement).value;
-//   if(filtervalue === ''){
-//     this.sortedData = data;
-//     return;
-//   }
-//   console.log(this.sortedData);
+applyFilter(value : String){
+  const data = this.student.slice();
+  console.log(this.sortedData);
   
-//   console.log("i am called");
+  console.log("i am called");
   
-//   console.log(filtervalue);
-//   this.sortedData.filter = filtervalue.trim().toLocaleLowerCase();
-// }
+
+  if (value === "Success" || value === "success"){
+  this.sortedData = data.filter((data) => data.paymentStatus == "Success"); 
+  }
+  else if(value === "Initiated" || value === "initiated"){
+    this.sortedData = data.filter((data) => data.paymentStatus == "Initiated"); 
+  }
+  else if(value === "Failed" || value === "failed"){
+    this.sortedData = data.filter((data) => data.paymentStatus == "Failed"); 
+  }
+  else if(value === "Dropped" || value === "dropped")
+  {
+    this.sortedData = data.filter((data) => data.paymentStatus == "Dropped"); 
+  }
+  else if(value === "Refunded" || value === "refunded")
+  {
+    this.sortedData = data.filter((data) => data.paymentStatus == "Refunded"); 
+  }
+  else if (value === ""){
+    this.sortedData = data;
+  }
+  console.log(this.sortedData);
+  
+}
 
 OnClickHome(){
   this.router.navigate(['/homepage']);
