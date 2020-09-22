@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>Modify inventory</h2>
+<mat-dialog-content *ngIf="data && modifyform">
+    <mat-card class="mat-elevation-z12" class="modify-form">
+
+        <form [formGroup]='modifyform' novalidate >
+            <fieldset>
+                <mat-form-field class="modify-full-width">
+                    <input formControlName='id' type="number" readonly matInput placeholder="paymentId" />
+                </mat-form-field>
+
+                <mat-form-field class="modify-full-width">
+                    <input formControlName='orderDate' readonly type="datetime-local" matInput
+                        placeholder="orderDate" />
+                </mat-form-field>
+
+
+                <mat-form-field class="modify-full-width">
+                    <input formControlName='merchatId' type="number" matInput placeholder="merchatId" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span *ngIf="!modifyform.get('merchatId').valid && modifyform.get('merchatId').touched">Please enter
+                        merchatId, numeric only !!!</span>
+                </mat-error>
+
+                <mat-form-field class="modify-full-width">
+                    <input formControlName='customerEmail' type="text" matInput placeholder="customerEmail" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span
+                        *ngIf="!modifyform.get('customerEmail').valid && modifyform.get('customerEmail').touched">Please
+                        enter valid customerEmail !!!</span>
+                </mat-error>
+
+
+                <mat-form-field class="modify-full-width">
+                    <input formControlName='amount' type="number" matInput placeholder="amount" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span *ngIf="!modifyform.get('amount').valid && modifyform.get('amount').touched">Please enter
+                        amount, numeric only !!!</span>
+                </mat-error>
+
+                <mat-form-field class="modify-full-width">
+                    <input formControlName='paymentStatus' type="text" matInput placeholder="paymentStatus" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span
+                        *ngIf="!modifyform.get('paymentStatus').valid && modifyform.get('paymentStatus').touched">Please
+                        enter paymentStatus, alphabets !!!</span>
+                </mat-error>
+
+
+            </fieldset>
+            <button mat-dialog-close="true" mat-raised-button color='primary' [disabled]="!modifyform.valid"
+            (click)="OnSubmitdata(modifyform)"
+                type="submit">Update</button>
+
+            <button mat-dialog-close="true" mat-raised-button color='primary' [disabled]="!modifyform.valid"
+            (click)="OnDeletedata(modifyform)"
+                type="submit">Delete</button>
+
+
+        </form>
+
+    </mat-card>
+
+</mat-dialog-content>

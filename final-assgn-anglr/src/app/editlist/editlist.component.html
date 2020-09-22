@@ -1,0 +1,65 @@
+<mat-toolbar>
+    <mat-icon mat-mini-fab color="primary" aria-hidden="false" aria-label="Example home icon" class='pointer'
+        (click)='Onclick()'>home</mat-icon>
+</mat-toolbar>
+
+<section>
+    <mat-card class="mat-elevation-z12" class="edit-form">
+
+        <form [formGroup]='editform' (ngSubmit)='OnSubmit()' novalidate>
+            <fieldset>
+                <mat-form-field class="edit-full-width">
+                    <input formControlName='id' type="number" matInput placeholder="paymentId" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span *ngIf="!editform.get('id').valid && editform.get('id').touched">Please enter id numeric</span>
+                </mat-error>
+
+                <mat-form-field class="edit-full-width">
+                    <input formControlName='orderDate' readonly type="datetime-local" matInput
+                        placeholder="orderDate" />
+                </mat-form-field>
+
+                <mat-form-field class="edit-full-width">
+                    <input formControlName='merchatId' type="number" matInput placeholder="merchatId" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span *ngIf="!editform.get('merchatId').valid && editform.get('merchatId').touched">Please enter merchant ID numeric only!!!</span>
+                </mat-error>
+
+                <mat-form-field class="edit-full-width">
+                    <input formControlName='customerEmail' type="text" matInput placeholder="customerEmail" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span *ngIf="!editform.get('customerEmail').valid && editform.get('customerEmail').touched">Please enter
+                        valid customerEmail !!!</span>
+                </mat-error>
+
+                <mat-form-field class="edit-full-width">
+                    <input formControlName='amount' type="number" matInput placeholder="amount" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span *ngIf="!editform.get('amount').valid && editform.get('amount').touched">Please
+                        enter amount, numeric only !!!</span>
+                </mat-error>
+
+                <mat-form-field class="edit-full-width">
+                    <input formControlName='paymentStatus' type="text" matInput placeholder="paymentStatus" />
+                </mat-form-field>
+
+                <mat-error>
+                    <span *ngIf="!editform.get('paymentStatus').valid && editform.get('paymentStatus').touched">Please enter
+                        payment status, alphabatical only !!!</span>
+                </mat-error>
+
+                <button mat-raised-button color='primary' type="submit" [disabled]="!editform.valid">Submit</button>
+
+            </fieldset>
+        </form>
+
+    </mat-card>
+</section>

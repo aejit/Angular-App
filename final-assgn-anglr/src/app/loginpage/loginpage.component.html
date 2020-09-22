@@ -1,0 +1,17 @@
+
+<mat-card class="mat-elevation-z8" class="edit-form">
+    <form [formGroup] = 'loginform'>
+        <fieldset>
+        <mat-form-field class="edit-full-width">
+            <input matInput formControlName = 'username' type="text" placeholder="username"/>
+        </mat-form-field>
+        <mat-form-field class="edit-full-width">
+            <input matInput formControlName = 'password' type="text" placeholder="*******" />
+        </mat-form-field>
+        
+        <button type="submit" mat-raised-button color='primary' [disabled]="!loginform.valid" (click) = 'onClick()'>Login</button>
+        
+        </fieldset>
+    </form>
+</mat-card>
+
